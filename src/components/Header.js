@@ -34,7 +34,7 @@ const Header = () => {
         <img src={Logo} alt="" />
         <div className="header__search">
             <SearchIcon />
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="I'm looking for..." />
         </div>
       </div>
       <div className="header__right">
@@ -43,7 +43,7 @@ const Header = () => {
         <HeaderOption Icon={BusinessCenterIcon}title="Jobs"/>
         <HeaderOption Icon={ChatIcon}title="Messaging"/>
         <HeaderOption Icon={NotificationsIcon}title="Notifications"/>
-        <HeaderOption avatar={true} title="me" 
+        <HeaderOption avatar={true} title="Me" 
         onClick={logoutOfApp} />
       </div>
     </div>

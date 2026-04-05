@@ -18,7 +18,7 @@
 
 .widgets__header > h2 {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 800;
 }
 
 .widgets__article {
@@ -51,4 +51,20 @@
 .widgets__article--right > p {
     font-size: 12px;
     color: gray;
+}
+
+.infoIcon {
+    color: gray;
+}
+
+.widgets > p {
+    padding: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
 }

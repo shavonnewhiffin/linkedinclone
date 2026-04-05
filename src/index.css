@@ -16,3 +16,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media ( max-width: 768px) {
+
+.widgets{
+  display: none;
+}
+
+.feed {
+  flex: 0.7;
+}
+
+.app__body {
+  width: 100%;
+
+} 
+}
+
+@media ( max-width: 660px) {
+
+ .app__body{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .sidebar, .feed {
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .feed {
+    margin: 0 auto;
+  }
+}
