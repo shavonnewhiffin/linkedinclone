@@ -9,9 +9,13 @@ import InputOption from './InputOption';
 import Post from './Post.js';
 import { db } from "../firebase.js";
 import { collection, addDoc, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore";
-
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/users/userSlice';
+import FlipMove from 'react-flip-move';
 
 const Feed = () => {
+
+const user= useSelector(selectUser);
 
 // Create a state for the input field and posts
 const [input, setInput] = useState('');
@@ -43,10 +47,10 @@ const sendPost = async (e) => {
 
     try {
         await addDoc(collection(db, 'posts'), {
-            name: "Sonny Sangha",
-            description: "This is a test too",
+            name: user.displayName,
+            description: user.email,
             message: input,
-            photoUrl: "",
+            photoUrl: user.photoUrl || '',
             timestamp: serverTimestamp(), // Use serverTimestamp as a time reference globally
         });
 
@@ -74,6 +78,7 @@ const sendPost = async (e) => {
 </div>
 
 {/* Posts */}
+<FlipMove>
 {posts.map(({ id, data:{ name, description, message, photoUrl }}) => (
     <Post
     key={id}
@@ -83,6 +88,7 @@ const sendPost = async (e) => {
     photoUrl={photoUrl}
     />
 ))}
+</FlipMove>
     </div>
   )
 }

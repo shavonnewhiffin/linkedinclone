@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import LinkedIn from '../assets/linkedin.png';
 import { auth } from '../firebase';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { login } from '../features/users/userSlice';
 
@@ -11,47 +12,59 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [profilePic, setProfilePic] = useState("")
-    // Allows us to store user in Redux
+    // Allows us to store user in Redux store
     const dispatch = useDispatch();
 
     const register = () => {
-    if(!name) {
-        return alert("Please enter a full name")
-    }
-
-    auth.createUserWithEmailAndPassword(email, password).then((userAuth) => {
-        userAuth.user.updateProfile({
-            displayName: name,
-            photoURL: profilePic,
-        })
-        .then(() => {
-            dispatch(
+        if (!name) {
+          return alert("Please enter a full name");
+        }
+      
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userAuth) => {
+            return updateProfile(userAuth.user, {
+              displayName: name,
+              photoURL: profilePic,
+            }).then(() => {
+              dispatch(
                 login({
-                email: userAuth.user.email,
-                uid: userAuth.user.uid,
-                displayName: name,
-                photoUrl: profilePic
-            }))
-        })
-    }).catch(error => alert(error.message));
-    };
+                  email: userAuth.user.email,
+                  uid: userAuth.user.uid,
+                  displayName: name,
+                  photoUrl: profilePic,
+                })
+              );
+            });
+          })
+          .catch((error) => alert(error.message));
+      };
 
     const loginToApp = (e) => {
         e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userAuth) => {
+            dispatch(login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid, 
+                displayName: userAuth.user.displayName, 
+                profileUrl: userAuth.user.profileURL,
+            }))
+        }) .catch(error => alert(error));
     };
+
   return (
     <div className="login">
       <img src={LinkedIn} alt="Linkedin Logo" />
 
     <form onSubmit={loginToApp}>
         <input type="text"
-        value="name"
+        value={name}
         onChange={e => setName(e.target.value)}
         placeholder="Full Name(required if registering)" />
 
         <input type="text" 
         placeholder ="Profile pic URL (optional)"
-        value="profilePic"
+        value={profilePic}
         onChange={e => setProfilePic(e.target.value)}/>
 
         <input type="email"
@@ -59,10 +72,9 @@ const Login = () => {
         onChange={e => setEmail(e.target.value)}
         placeholder = "Email"/>
 
-        <input type="text"
-        value="password"
+        <input type="password"
+        value={password}
         placeholder ="Password"
-        type ="password"
         onChange={e => setPassword(e.target.value)}/>
         <button type="submit">Sign In</button>
     </form>
