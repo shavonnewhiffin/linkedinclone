@@ -17,6 +17,13 @@ code {
     monospace;
 }
 
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* MEDIA QUERIES */
 @media ( max-width: 768px) {
 
 .widgets{
@@ -29,31 +36,68 @@ code {
 
 .app__body {
   width: 100%;
-
 } 
 }
 
 @media ( max-width: 660px) {
 
+  .row {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
  .app__body{
     display: flex;
     flex-direction: column;
-    max-width: 600px;
     width: 100%;
-    margin: 0 auto;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .sidebar, .feed {
-    flex: 1;
-    max-width: 600px;
+    flex: unset;
     width: 100%;
   }
 
   .sidebar {
-    position: static;
+    position: static !important;
+    margin-bottom: 10px;
   }
 
   .feed {
-    margin: 0 auto;
+    margin: 0 !important;
+  }
+
+  .headerOption{
+    margin-right: 10px;
+    font-size: 10px;
+  }
+
+  .headerOption__title {
+    font-size: 10px;
+  }
+
+  .header__search{
+    padding: 0px;
+  }
+
+  .header {
+    display:flex;
+    align-items:center;
+  }
+
+  .header  input::placeholder {
+    color: transparent;
+  }
+
+  .header__search {
+    width: 40px;
+    cursor: pointer;
+  }
+
+  .header__search:hover {
+    color: black;
   }
 }
+
+ 

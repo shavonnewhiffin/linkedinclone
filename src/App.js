@@ -33,7 +33,7 @@ useEffect(() => {
   return (
     <div className="app">
 <Header />
-
+      <div className="row">
 {!user ? <Login /> : (
   <div className="app__body">
  <Sidebar />
@@ -41,6 +41,7 @@ useEffect(() => {
 <Widget />
 </div>
 )}
+</div>
     </div>
   );
 }
