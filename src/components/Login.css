@@ -37,6 +37,12 @@
     border-radius: 5px;
 }
 
+.login > form > .register__button {
+    background-color: aliceblue;
+    color: #0074b1;
+    margin-top: 10px;
+  }
+
 .login__register {
     color: #0074b1;
     cursor: pointer;
@@ -46,3 +52,4 @@
     margin-top: 20px;
     
 }
+

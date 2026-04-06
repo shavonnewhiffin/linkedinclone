@@ -32,7 +32,7 @@ const Login = () => {
                   email: userAuth.user.email,
                   uid: userAuth.user.uid,
                   displayName: name,
-                  photoUrl: profilePic,
+                  photoUrl: userAuth.user.photoURL,
                 })
               );
             });
@@ -49,7 +49,7 @@ const Login = () => {
                 email: userAuth.user.email,
                 uid: userAuth.user.uid, 
                 displayName: userAuth.user.displayName, 
-                profileUrl: userAuth.user.profileURL,
+                photoUrl: userAuth.user.photoURL,
             }))
         }).catch(error => alert(error));
     };
@@ -79,6 +79,7 @@ const Login = () => {
         placeholder ="Password"
         onChange={e => setPassword(e.target.value)}/>
         <button type="submit">Sign In</button>
+        <button className="register__button" type="button" onClick={register}>Register</button>
     </form>
 
     <p>Not a member? 

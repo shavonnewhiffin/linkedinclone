@@ -11,6 +11,7 @@ import EventIcon from "@mui/icons-material/Event";
 const Sidebar = () => {
   // Import user from the Redux store
   const user = useSelector(selectUser);
+  if (!user) return null; // Return null if user is not available
 
   const featuredItems = [
     { Icon: BookmarkIcon, label: "Saved Items" },
@@ -36,8 +37,8 @@ const Sidebar = () => {
         <Avatar src={user?.photoUrl} className="sidebar__avatar">
           {user?.email?.[0].toUpperCase()}{" "}
         </Avatar>
-        <h2>{user.displayName}</h2>
-        <h4>{user.email}</h4>
+        <h2>{user?.displayName}</h2>
+        <h4>{user?.email}</h4>
       </div>
 
       <div className="sidebar__stats">

@@ -23,8 +23,8 @@ const Header = () => {
   // Dispatch logout action and log out of firebase
 
   const logoutOfApp = () => {
-    dispatch(logout())
     signOut(auth);
+    dispatch(logout())
   };
 
   return (
