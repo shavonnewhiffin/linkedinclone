@@ -43,8 +43,8 @@ const Header = () => {
         <HeaderOption Icon={BusinessCenterIcon}title="Jobs"/>
         <HeaderOption Icon={ChatIcon}title="Messaging"/>
         <HeaderOption Icon={NotificationsIcon}title="Notifications"/>
-        <HeaderOption avatar={true} title="Me" 
-        onClick={logoutOfApp} />
+        {user && <HeaderOption avatar={true} title="Me" 
+        onClick={logoutOfApp} />}
       </div>
     </div>
   );

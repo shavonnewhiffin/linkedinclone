@@ -15,6 +15,7 @@ import FlipMove from 'react-flip-move';
 
 const Feed = () => {
 
+// Import user from the Redux store
 const user= useSelector(selectUser);
 
 // Create a state for the input field and posts
@@ -36,24 +37,21 @@ useEffect(() => {
     });
 
 
-        // Cleanup the listener when the component unmounts
+ // Cleanup the listener when the component unmounts
     return () => unsubscribe();
 }, []);
 
-
+// Prevent page reload on post submission and add the post to Firebase with server timestamp for global time reference
 const sendPost = async (e) => {
     e.preventDefault();
-
-
     try {
         await addDoc(collection(db, 'posts'), {
             name: user.displayName,
             description: user.email,
             message: input,
             photoUrl: user.photoUrl || '',
-            timestamp: serverTimestamp(), // Use serverTimestamp as a time reference globally
+            timestamp: serverTimestamp(),
         });
-
         setInput(''); // Clear the input after sending the post
     } catch (error) {
         console.error("Error adding document: ", error);
@@ -76,8 +74,6 @@ const sendPost = async (e) => {
            <InputOption Icon={CalendarViewDayIcon} title="Write article" color="7FC15E"/>
         </div>
 </div>
-
-{/* Posts */}
 <FlipMove>
 {posts.map(({ id, data:{ name, description, message, photoUrl }}) => (
     <Post

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import LinkedIn from '../assets/linkedin.png';
+import LinkedInLong from '../assets/LinkedInLong.png';
 import { auth } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
@@ -19,7 +19,8 @@ const Login = () => {
         if (!name) {
           return alert("Please enter a full name");
         }
-      
+    
+        // User Registration with Firebase
         createUserWithEmailAndPassword(auth, email, password)
           .then((userAuth) => {
             return updateProfile(userAuth.user, {
@@ -39,6 +40,7 @@ const Login = () => {
           .catch((error) => alert(error.message));
       };
 
+    //   User Login with Firebase
     const loginToApp = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
@@ -54,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="login">
-      <img src={LinkedIn} alt="Linkedin Logo" />
+      <img src={LinkedInLong} alt="Linkedin Logo" />
 
     <form onSubmit={loginToApp}>
         <input type="text"
@@ -80,7 +82,7 @@ const Login = () => {
     </form>
 
     <p>Not a member? 
-        <span className="login__register" onClick={register}> Register Now</span>
+        <span className="login__register" onClick={register}> Register First</span>
     </p>
     </div>
   );
