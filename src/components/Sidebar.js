@@ -19,13 +19,6 @@ const Sidebar = () => {
     { Icon: EventIcon, label: "Events" },
   ];
 
-  const featuredItem = (Icon, feature) => (
-    <div className="sidebar__featuredItem">
-      <Icon className="sidebar__featuredIcon" />
-      <p>{feature}</p>
-    </div>
-  );
-
   const recentItem = (topic) => (
     <div className="sidebar__recentItem">
       <span className="sidebar__hash">#</span>

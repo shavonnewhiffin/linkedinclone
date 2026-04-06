@@ -28,7 +28,7 @@ useEffect(() => {
   } else {
     dispatch(logout());
   }})
-}, [])
+}, [dispatch])
 
   return (
     <div className="app">

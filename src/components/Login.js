@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import LinkedInLong from '../assets/LinkedInLong.png';
 import { auth } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { login } from '../features/users/userSlice';
 
@@ -51,7 +51,7 @@ const Login = () => {
                 displayName: userAuth.user.displayName, 
                 profileUrl: userAuth.user.profileURL,
             }))
-        }) .catch(error => alert(error));
+        }).catch(error => alert(error));
     };
 
   return (

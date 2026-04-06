@@ -8,7 +8,6 @@ import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Logo from '../assets/logo.png';
 import HeaderOption from "./HeaderOption";
-import Headshot from "../assets/headshot.png"
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
 import { logout, selectUser } from "../features/users/userSlice";
